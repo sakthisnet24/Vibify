@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibify - Spotify-like Premium Music Player</title>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div class="logo-container" id="logoLink">
+                <img src="assets/logo.png" alt="Vibify Logo" class="logo-img" onerror="this.src='https://placehold.co/40x40/ff3b30/ffcc00?text=V';">
+                <span class="logo-text">Vibify</span>
+            </div>
+            
+            <nav class="nav-group">
+                <div class="nav-item active" id="navHome">
+                    <i class="fa-solid fa-house"></i>
+                    <span>Home</span>
+                </div>
+                <div class="nav-item" id="navSearch">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <span>Search</span>
+                </div>
+            </nav>
+
+            <div class="library-section">
+                <div class="library-header">
+                    <span class="lib-title"><i class="fa-solid fa-bookmark" style="margin-right: 8px;"></i>Your Library</span>
+                    <i class="fa-solid fa-plus" title="Create Playlist" id="btnCreatePlaylist"></i>
+                </div>
+                
+                <div class="playlist-list">
+                    <!-- Liked Songs Shortcut -->
+                    <div class="playlist-item" id="libraryLikedSongs">
+                        <div class="playlist-thumb" style="background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-yellow) 100%); display: flex; align-items: center; justify-content: center; color: white;">
+                            <i class="fa-solid fa-heart" style="font-size: 16px;"></i>
+                        </div>
+                        <div class="playlist-info">
+                            <span class="playlist-name">Liked Songs</span>
+                            <span class="playlist-meta">Playlist • <span id="sidebarLikedCount">0</span> songs</span>
+                        </div>
+                    </div>
+                    
+                    <!-- 2025 Hits Shortcut -->
+                    <div class="playlist-item" id="library2025">
+                        <img src="assets/cover_2025.png" alt="2025 Hits" class="playlist-thumb" onerror="this.src='https://placehold.co/44x44/141418/ff3b30?text=2025';">
+                        <div class="playlist-info">
+                            <span class="playlist-name">2025 Hits</span>
+                            <span class="playlist-meta">Playlist • Vibify</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Ilayaraja Classics Shortcut -->
+                    <div class="playlist-item" id="libraryIlayaraja">
+                        <img src="assets/cover_ilayaraja.png" alt="Ilayaraja Classics" class="playlist-thumb" onerror="this.src='https://placehold.co/44x44/141418/ffcc00?text=IR';">
+                        <div class="playlist-info">
+                            <span class="playlist-name">Ilayaraja Classics</span>
+                            <span class="playlist-meta">Playlist • Vibify</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Window Content -->
+        <main class="main-content" id="mainContent">
+            <!-- Header navigation and search bar -->
+            <header>
+                <div class="header-left">
+                    <div class="nav-buttons">
+                        <button class="nav-btn" id="btnHistoryBack" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                        <button class="nav-btn" id="btnHistoryForward" disabled><i class="fa-solid fa-chevron-right"></i></button>
+                    </div>
+                    
+                    <!-- Global Search Bar (Only visible in search view) -->
+                    <div class="search-container" id="searchContainer">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" placeholder="What do you want to play?" class="search-input" id="searchInput" autocomplete="off">
+                    </div>
+                </div>
+
+                <div class="header-right">
+                    <div class="profile-badge">
+                        <div class="profile-avatar">V</div>
+                        <span>Vibe Guest</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main view container (Dynamic) -->
+            <div class="view-container">
+                
+                <!-- 1. HOME VIEW -->
+                <div class="home-view" id="homeView">
+                    <!-- Dynamic Greeting Banner -->
+                    <div class="welcome-banner">
+                        <h1 id="greetingText">Good Day, <span>Viber</span>!</h1>
+                        <p>Welcome to Vibify. Listen to the hits of 2025 and the classic compositions of Ilayaraja.</p>
+                    </div>
+
+                    <!-- Quick Play Section (Grid Cards) -->
+                    <div class="section-container">
+                        <h2>Quick Vibes</h2>
+                        <div class="quick-play-grid">
+                            <div class="quick-card" id="quickCardLiked">
+                                <div class="quick-card-img" style="background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-yellow) 100%); display: flex; align-items: center; justify-content: center; color: white; width: 80px; height: 80px;">
+                                    <i class="fa-solid fa-heart" style="font-size: 28px;"></i>
+                                </div>
+                                <div class="quick-card-content">Liked Songs</div>
+                                <button class="quick-play-btn" id="quickPlayLiked"><i class="fa-solid fa-play"></i></button>
+                            </div>
+                            <div class="quick-card" id="quickCard2025">
+                                <img src="assets/cover_2025.png" alt="2025 Hits" class="quick-card-img" onerror="this.src='https://placehold.co/80x80/141418/ff3b30?text=2025';">
+                                <div class="quick-card-content">2025 Hits</div>
+                                <button class="quick-play-btn" id="quickPlay2025"><i class="fa-solid fa-play"></i></button>
+                            </div>
+                            <div class="quick-card" id="quickCardIlayaraja">
+                                <img src="assets/cover_ilayaraja.png" alt="Ilayaraja Classics" class="quick-card-img" onerror="this.src='https://placehold.co/80x80/141418/ffcc00?text=IR';">
+                                <div class="quick-card-content">Ilayaraja Classics</div>
+                                <button class="quick-play-btn" id="quickPlayIlayaraja"><i class="fa-solid fa-play"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2025 Section -->
+                    <div class="section-container">
+                        <div class="section-header">
+                            <h2>2025 Hits</h2>
+                            <span style="color: var(--color-secondary); font-size: 13px; font-weight: 600; cursor: pointer;" id="seeAll2025">See All</span>
+                        </div>
+                        <div class="section-grid" id="grid2025">
+                            <!-- Cards will be populated dynamically via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Ilayaraja Section -->
+                    <div class="section-container">
+                        <div class="section-header">
+                            <h2>Ilayaraja Classics</h2>
+                            <span style="color: var(--color-secondary); font-size: 13px; font-weight: 600; cursor: pointer;" id="seeAllIlayaraja">See All</span>
+                        </div>
+                        <div class="section-grid" id="gridIlayaraja">
+                            <!-- Cards will be populated dynamically via JavaScript -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. SEARCH VIEW -->
+                <div class="search-view" id="searchView">
+                    <div class="search-results-section" id="searchResultsSection" style="display: none;">
+                        <h2>Search Results</h2>
+                        <div class="track-list-container" style="padding: 0; margin-top: 16px;">
+                            <table class="track-table">
+                                <thead>
+                                    <tr>
+                                        <th class="track-number">#</th>
+                                        <th>Title</th>
+                                        <th class="album-col">Folder</th>
+                                        <th></th>
+                                        <th class="track-duration"><i class="fa-regular fa-clock"></i></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="searchResultsTableBody">
+                                    <!-- Search results populated dynamically -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    <div class="section-container" id="searchBrowseSection">
+                        <h2>Browse all</h2>
+                        <div class="section-grid">
+                            <div class="music-card" id="browseCard2025">
+                                <div class="card-img-wrapper" style="background: linear-gradient(135deg, #ff3b30 0%, #ff5e36 100%);">
+                                    <div style="font-size: 24px; font-weight: 800; padding: 20px;">2025 Hits</div>
+                                </div>
+                                <div class="card-title">Vibrant Hits</div>
+                                <div class="card-artist">Fresh new sounds</div>
+                            </div>
+                            <div class="music-card" id="browseCardIlayaraja">
+                                <div class="card-img-wrapper" style="background: linear-gradient(135deg, #ffcc00 0%, #ff9500 100%);">
+                                    <div style="font-size: 24px; font-weight: 800; padding: 20px; color: #000;">Ilayaraja</div>
+                                </div>
+                                <div class="card-title">Golden Classics</div>
+                                <div class="card-artist">Timeless instrumental and vocal hits</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. PLAYLIST DETAIL VIEW -->
+                <div class="playlist-view" id="playlistView">
+                    <!-- Banner -->
+                    <div class="playlist-header-banner" id="playlistBanner">
+                        <img src="" alt="" class="playlist-header-img" id="playlistHeaderImg">
+                        <div class="playlist-header-text">
+                            <span class="playlist-tag">Playlist</span>
+                            <h1 class="playlist-title-h1" id="playlistHeaderTitle">Playlist Name</h1>
+                            <p class="playlist-description" id="playlistHeaderDesc">Playlist description goes here.</p>
+                            <div class="playlist-stats">
+                                <span class="owner">Vibify</span>
+                                <span class="bullet">•</span>
+                                <span class="details" id="playlistHeaderStats">0 songs</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Action controls inside playlist -->
+                    <div class="playlist-action-bar">
+                        <button class="btn-play-playlist" id="btnPlayPlaylist" title="Play Playlist">
+                            <i class="fa-solid fa-play"></i>
+                        </button>
+                        <button class="btn-like-playlist" id="btnLikePlaylist" title="Add to Library">
+                            <i class="fa-regular fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <!-- Tracks Table -->
+                    <div class="track-list-container">
+                        <table class="track-table">
+                            <thead>
+                                <tr>
+                                    <th class="track-number">#</th>
+                                    <th>Title</th>
+                                    <th class="album-col">Folder</th>
+                                    <th></th>
+                                    <th class="track-duration"><i class="fa-regular fa-clock"></i></th>
+                                </tr>
+                            </thead>
+                            <tbody id="playlistTracksTableBody">
+                                <!-- Track Rows populated by JavaScript -->
+                            </tbody>
+                        </table>
+                        
+                        <!-- Empty playlist state -->
+                        <div class="empty-state" id="playlistEmptyState" style="display: none;">
+                            <i class="fa-solid fa-music"></i>
+                            <h3>No songs yet</h3>
+                            <p>Check out the home page to add some vibe to this playlist.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <!-- Right Side Panel / Canvas Visualizer (Toggled by user) -->
+        <div class="visualizer-overlay" id="visualizerOverlay">
+            <div class="visualizer-header">
+                <h3>Vibe Visualizer</h3>
+                <i class="fa-solid fa-xmark" id="visualizerCloseBtn" style="font-size: 20px;"></i>
+            </div>
+            
+            <div class="visualizer-now-playing">
+                <img src="" alt="Album Cover" class="visualizer-cover" id="vizCoverImg">
+                <div class="visualizer-song-details">
+                    <h4 id="vizSongTitle">Song Title</h4>
+                    <p id="vizSongArtist">Artist Name</p>
+                </div>
+            </div>
+
+            <div class="visualizer-canvas-container">
+                <canvas class="visualizer-canvas" id="visualizerCanvas"></canvas>
+            </div>
+        </div>
+
+        <!-- Bottom Music Player Controls -->
+        <footer class="bottom-player">
+            <!-- Left Side: Currently playing song details -->
+            <div class="player-left">
+                <img src="" alt="" class="player-track-img" id="playerTrackImg" style="display: none;">
+                <div class="player-track-info" id="playerTrackInfo" style="display: none;">
+                    <span class="player-track-title" id="playerTrackTitle">Track Title</span>
+                    <span class="player-track-artist" id="playerTrackArtist">Artist Name</span>
+                </div>
+                <button class="player-track-like" id="playerTrackLike" style="display: none;" title="Like Song">
+                    <i class="fa-regular fa-heart"></i>
+                </button>
+            </div>
+
+            <!-- Center: Playback buttons and progress bar -->
+            <div class="player-center">
+                <div class="player-controls">
+                    <button class="control-btn" id="btnShuffle" title="Shuffle"><i class="fa-solid fa-shuffle"></i></button>
+                    <button class="control-btn" id="btnPrev" title="Previous"><i class="fa-solid fa-backward-step"></i></button>
+                    <button class="control-btn btn-play-pause" id="btnPlayPause" title="Play"><i class="fa-solid fa-play"></i></button>
+                    <button class="control-btn" id="btnNext" title="Next"><i class="fa-solid fa-forward-step"></i></button>
+                    <button class="control-btn" id="btnRepeat" title="Repeat"><i class="fa-solid fa-repeat"></i></button>
+                </div>
+
+                <div class="player-progress">
+                    <span class="time-stamp" id="timeCurrent">0:00</span>
+                    <div class="progress-slider-container" id="progressBarContainer">
+                        <div class="progress-slider-bar" id="progressBarFill">
+                            <div class="progress-slider-handle"></div>
+                        </div>
+                    </div>
+                    <span class="time-stamp" id="timeTotal">0:00</span>
+                </div>
+            </div>
+
+            <!-- Right Side: Volume & Visualizer trigger -->
+            <div class="player-right">
+                <button class="control-btn" id="btnToggleVisualizer" title="Toggle Visualizer">
+                    <i class="fa-solid fa-chart-simple"></i>
+                </button>
+                
+                <div class="volume-container">
+                    <button class="control-btn" id="btnVolumeMute" title="Mute/Unmute">
+                        <i class="fa-solid fa-volume-high"></i>
+                    </button>
+                    <div class="volume-slider-container" id="volumeBarContainer">
+                        <div class="volume-slider-bar" id="volumeBarFill">
+                            <div class="volume-slider-handle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Background HTML5 Audio Element -->
+    <audio id="audioElement" preload="auto"></audio>
+
+    <!-- Custom Player Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
