@@ -1272,6 +1272,11 @@ header {
     100% { transform: scale(1); }
 }
 
+/* Mobile bottom navigation bar base styles (hidden on desktop) */
+.mobile-nav {
+    display: none;
+}
+
 /* Responsive Styles */
 @media (max-width: 992px) {
     .app-container {
@@ -1323,25 +1328,67 @@ header {
 @media (max-width: 768px) {
     .app-container {
         grid-template-columns: 100%;
-        grid-template-rows: 1fr 60px 80px; /* main, navbar bottom mobile, player */
+        grid-template-rows: 1fr 80px 60px; /* main content, bottom player, mobile bottom nav */
     }
     .sidebar {
-        display: none; /* We can implement a bottom nav or toggle menu for mobile later if needed */
+        display: none;
+    }
+    .mobile-nav {
+        display: flex;
+        background-color: #0c0c0f;
+        border-top: 1px solid #1c1c24;
+        justify-content: space-around;
+        align-items: center;
+        z-index: 102;
+    }
+    .mobile-nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-secondary);
+        font-size: 11px;
+        font-weight: 600;
+        gap: 4px;
+        cursor: pointer;
+        transition: color var(--transition-fast);
+        flex: 1;
+        height: 100%;
+        padding: 6px 0;
+    }
+    .mobile-nav-item i {
+        font-size: 18px;
+    }
+    .mobile-nav-item.active {
+        color: var(--accent-yellow);
+    }
+    .mobile-nav-item:hover {
+        color: var(--color-primary);
+    }
+    .nav-buttons {
+        display: none; /* Hide history arrows on mobile */
+    }
+    header {
+        padding: 12px 16px;
+    }
+    .header-left {
+        max-width: none;
     }
     .player-left {
         width: 40%;
     }
     .player-center {
-        width: 50%;
+        width: 60%;
     }
     .player-right {
-        display: none; /* Hide volume controls on very small screens to save space */
+        display: none; /* Hide volume on mobile to save space */
     }
     .playlist-header-banner {
         flex-direction: column;
         align-items: center;
         text-align: center;
         padding: 40px 16px 16px 16px;
+        gap: 16px;
     }
     .playlist-header-img {
         width: 150px;

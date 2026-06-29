@@ -185,6 +185,11 @@ const libraryLikedSongs = document.getElementById('libraryLikedSongs');
 const library2025 = document.getElementById('library2025');
 const libraryIlayaraja = document.getElementById('libraryIlayaraja');
 
+// Mobile Navigation Items
+const mobileNavHome = document.getElementById('mobileNavHome');
+const mobileNavSearch = document.getElementById('mobileNavSearch');
+const mobileNavLibrary = document.getElementById('mobileNavLibrary');
+
 // History Buttons
 const btnHistoryBack = document.getElementById('btnHistoryBack');
 const btnHistoryForward = document.getElementById('btnHistoryForward');
@@ -295,6 +300,11 @@ function navigateTo(view, playlistId = null) {
     library2025.classList.remove('active');
     libraryIlayaraja.classList.remove('active');
     
+    // Deactivate mobile nav items
+    mobileNavHome.classList.remove('active');
+    mobileNavSearch.classList.remove('active');
+    mobileNavLibrary.classList.remove('active');
+    
     // Hide search bar from header unless on search page
     searchContainer.classList.remove('visible');
     
@@ -305,9 +315,11 @@ function navigateTo(view, playlistId = null) {
     if (view === 'home') {
         homeView.style.display = 'flex';
         navHome.classList.add('active');
+        mobileNavHome.classList.add('active');
     } else if (view === 'search') {
         searchView.style.display = 'flex';
         navSearch.classList.add('active');
+        mobileNavSearch.classList.add('active');
         searchContainer.classList.add('visible');
         searchInput.focus();
     } else if (view === 'playlist') {
@@ -318,6 +330,8 @@ function navigateTo(view, playlistId = null) {
         if (playlistId === '2025') library2025.classList.add('active');
         else if (playlistId === 'ilayaraja') libraryIlayaraja.classList.add('active');
         else if (playlistId === 'liked') libraryLikedSongs.classList.add('active');
+        
+        mobileNavLibrary.classList.add('active');
     }
     
     // Add to history stack (if not duplicate of top)
@@ -373,6 +387,11 @@ function applyState(historyState) {
     libraryLikedSongs.classList.remove('active');
     library2025.classList.remove('active');
     libraryIlayaraja.classList.remove('active');
+    
+    mobileNavHome.classList.remove('active');
+    mobileNavSearch.classList.remove('active');
+    mobileNavLibrary.classList.remove('active');
+    
     searchContainer.classList.remove('visible');
     
     state.currentView = view;
@@ -381,9 +400,11 @@ function applyState(historyState) {
     if (view === 'home') {
         homeView.style.display = 'flex';
         navHome.classList.add('active');
+        mobileNavHome.classList.add('active');
     } else if (view === 'search') {
         searchView.style.display = 'flex';
         navSearch.classList.add('active');
+        mobileNavSearch.classList.add('active');
         searchContainer.classList.add('visible');
     } else if (view === 'playlist') {
         playlistView.style.display = 'block';
@@ -392,6 +413,8 @@ function applyState(historyState) {
         if (playlistId === '2025') library2025.classList.add('active');
         else if (playlistId === 'ilayaraja') libraryIlayaraja.classList.add('active');
         else if (playlistId === 'liked') libraryLikedSongs.classList.add('active');
+        
+        mobileNavLibrary.classList.add('active');
     }
 }
 
@@ -1228,11 +1251,16 @@ function setupNavigationListeners() {
     library2025.addEventListener('click', () => navigateTo('playlist', '2025'));
     libraryIlayaraja.addEventListener('click', () => navigateTo('playlist', 'ilayaraja'));
     
+    // Mobile Bottom Navigation Links
+    mobileNavHome.addEventListener('click', () => navigateTo('home'));
+    mobileNavSearch.addEventListener('click', () => navigateTo('search'));
+    mobileNavLibrary.addEventListener('click', () => navigateTo('playlist', 'liked'));
+    
     // History Back/Forward
     btnHistoryBack.addEventListener('click', navigateBack);
     btnHistoryForward.addEventListener('click', navigateForward);
     
-    // Create Playlist (Alert placeholder for premium Spotify feel)
+    // Create Playlist (Alert placeholder for premium feel)
     document.getElementById('btnCreatePlaylist').addEventListener('click', () => {
         alert("Vibify Premium features: Creating custom playlists will be available in the next release!");
     });

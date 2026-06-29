@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vibify - Spotify-like Premium Music Player</title>
+    <title>Vibify - Premium Music Player</title>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Custom CSS -->
@@ -153,6 +153,14 @@
 
                 <!-- 2. SEARCH VIEW -->
                 <div class="search-view" id="searchView">
+                    <!-- Mobile Search Input Box (Only visible on mobile) -->
+                    <div class="mobile-search-box">
+                        <h2>Search</h2>
+                        <div class="mobile-search-input-wrapper">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" placeholder="What do you want to play?" class="mobile-search-input" id="mobileSearchInput" autocomplete="off">
+                        </div>
+                    </div>
                     <div class="search-results-section" id="searchResultsSection" style="display: none;">
                         <h2>Search Results</h2>
                         <div class="track-list-container" style="padding: 0; margin-top: 16px;">
@@ -323,6 +331,22 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Mobile Bottom Navigation -->
+        <nav class="mobile-nav">
+            <div class="mobile-nav-item active" id="mobileNavHome">
+                <i class="fa-solid fa-house"></i>
+                <span>Home</span>
+            </div>
+            <div class="mobile-nav-item" id="mobileNavSearch">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span>Search</span>
+            </div>
+            <div class="mobile-nav-item" id="mobileNavLibrary">
+                <i class="fa-solid fa-bookmark"></i>
+                <span>Library</span>
+            </div>
+        </nav>
     </div>
 
     <!-- Background HTML5 Audio Element -->
