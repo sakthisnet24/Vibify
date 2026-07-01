@@ -19,8 +19,8 @@ const tracks = [
         artist: "Jakes Bejoy / Harris Jayaraj",
         album: "2025 Special",
         duration: "4:25",
-        src: "https://res.cloudinary.com/dlbicgmbt/video/upload/v1781680949/Karuppa_Kooda_Va_coknj9.mp3",
-        localSrc: "2025/Karuppa Kooda Va.mp3",
+        //src: "https://res.cloudinary.com/dlbicgmbt/video/upload/v1781680949/Karuppa_Kooda_Va_coknj9.mp3",
+        src: "2025/Karuppa Kooda Va.mp3",
         cover: "assets/cover_2025.png",
         folder: "2025"
     },
@@ -50,8 +50,8 @@ const tracks = [
         artist: "Sai Vignesh",
         album: "Kantara",
         duration: "4:39",
-        src: "https://res.cloudinary.com/dlbicgmbt/video/upload/v1781680950/Varaha_Roopam_pc7t8o.mp3",
-        localSrc: "2025/Varaha Roopam.mp3",
+        //src: "https://res.cloudinary.com/dlbicgmbt/video/upload/v1781680950/Varaha_Roopam_pc7t8o.mp3",
+        src: "2025/Varaha Roopam.mp3",
         cover: "assets/cover_2025.png",
         folder: "2025"
     },
@@ -126,6 +126,98 @@ const tracks = [
         src: "Ilayaraja/Vanamellam Shenbaga Poo.mp3",
         cover: "assets/cover_ilayaraja.png",
         folder: "Ilayaraja"
+    },
+
+    // 1999 Melodies
+    {
+        id: "1999-vennila",
+        title: "Vennila",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Vennila.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-innisai",
+        title: "Innisai Paadi Varum Male",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Innisai Paadi Varum Male.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-monalisa",
+        title: "Monalisa",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Monalisa.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-iruvathu",
+        title: "Iruvathu Kodi Nilavugal Kudi",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Iruvathu Kodi Nilavugal Kudi.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-clio",
+        title: "Clio Paattra",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Clio Paattra.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-parthu",
+        title: "Parthu Parthu Male",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Parthu Parthu Male.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-duniya",
+        title: "Duniya Hey Duniya",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Duniya Hey Duniya.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-thoda",
+        title: "Thoda Thoda Enave Vanavil Ennai",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Thoda Thoda Enave Vanavil Ennai.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
+    },
+    {
+        id: "1999-thulli",
+        title: "Thulli Thulli",
+        artist: "Various Artists",
+        album: "1999 Melodies",
+        duration: "4:00",
+        src: "1999 Melody/Thulli Thulli.mp3",
+        cover: "assets/1999_melo_cover.png",
+        folder: "1999melo"
     }
 ];
 
@@ -141,7 +233,7 @@ let state = {
     
     // View Management
     currentView: 'home', // 'home', 'search', 'playlist'
-    activePlaylistId: null, // '2025', 'ilayaraja', 'liked'
+    activePlaylistId: null, // '2025', 'ilayaraja', '1999melo', 'liked'
     
     // History stacks for navigation
     history: ['home'],
@@ -184,6 +276,7 @@ const logoLink = document.getElementById('logoLink');
 const libraryLikedSongs = document.getElementById('libraryLikedSongs');
 const library2025 = document.getElementById('library2025');
 const libraryIlayaraja = document.getElementById('libraryIlayaraja');
+const library1999melo = document.getElementById('library1999melo');
 
 // Mobile Navigation Items
 const mobileNavHome = document.getElementById('mobileNavHome');
@@ -197,6 +290,7 @@ const btnHistoryForward = document.getElementById('btnHistoryForward');
 // Grids
 const grid2025 = document.getElementById('grid2025');
 const gridIlayaraja = document.getElementById('gridIlayaraja');
+const grid1999melo = document.getElementById('grid1999melo');
 
 // Search Elements
 const searchContainer = document.getElementById('searchContainer');
@@ -221,9 +315,11 @@ const sidebarLikedCount = document.getElementById('sidebarLikedCount');
 const quickCardLiked = document.getElementById('quickCardLiked');
 const quickCard2025 = document.getElementById('quickCard2025');
 const quickCardIlayaraja = document.getElementById('quickCardIlayaraja');
+const quickCard1999melo = document.getElementById('quickCard1999melo');
 const quickPlayLiked = document.getElementById('quickPlayLiked');
 const quickPlay2025 = document.getElementById('quickPlay2025');
 const quickPlayIlayaraja = document.getElementById('quickPlayIlayaraja');
+const quickPlay1999melo = document.getElementById('quickPlay1999melo');
 
 // Browse Cards
 const browseCard2025 = document.getElementById('browseCard2025');
@@ -299,6 +395,7 @@ function navigateTo(view, playlistId = null) {
     libraryLikedSongs.classList.remove('active');
     library2025.classList.remove('active');
     libraryIlayaraja.classList.remove('active');
+    library1999melo.classList.remove('active');
     
     // Deactivate mobile nav items
     mobileNavHome.classList.remove('active');
@@ -329,6 +426,7 @@ function navigateTo(view, playlistId = null) {
         // Active states in sidebar
         if (playlistId === '2025') library2025.classList.add('active');
         else if (playlistId === 'ilayaraja') libraryIlayaraja.classList.add('active');
+        else if (playlistId === '1999melo') library1999melo.classList.add('active');
         else if (playlistId === 'liked') libraryLikedSongs.classList.add('active');
         
         mobileNavLibrary.classList.add('active');
@@ -387,6 +485,7 @@ function applyState(historyState) {
     libraryLikedSongs.classList.remove('active');
     library2025.classList.remove('active');
     libraryIlayaraja.classList.remove('active');
+    library1999melo.classList.remove('active');
     
     mobileNavHome.classList.remove('active');
     mobileNavSearch.classList.remove('active');
@@ -446,6 +545,17 @@ function renderPlaylistView(playlistId) {
         desc = "Timeless masterpieces composed by the Maestro Ilayaraja. Classic instrumentals and melodies.";
         coverSrc = "assets/cover_ilayaraja.png";
         bannerGrad = "linear-gradient(to bottom, rgba(255, 204, 0, 0.35) 0%, rgba(10, 10, 12, 0) 100%)";
+        playlistBanner.style.background = bannerGrad;
+        playlistHeaderImg.style.display = 'block';
+        playlistHeaderImg.src = coverSrc;
+        
+        btnLikePlaylist.innerHTML = '<i class="fa-regular fa-heart"></i>';
+    } else if (playlistId === '1999melo') {
+        playlistTracks = tracks.filter(t => t.folder === '1999melo');
+        title = "1999 Melodies";
+        desc = "A collection of nostalgic melodic favorites from the 1999 era.";
+        coverSrc = "assets/1999_melo_cover.png";
+        bannerGrad = "linear-gradient(to bottom, rgba(255, 204, 0, 0.28) 0%, rgba(10, 10, 12, 0) 100%)";
         playlistBanner.style.background = bannerGrad;
         playlistHeaderImg.style.display = 'block';
         playlistHeaderImg.src = coverSrc;
@@ -558,6 +668,8 @@ function playTrackFromList(trackId, playlistId) {
         selectedPlaylist = tracks.filter(t => t.folder === '2025');
     } else if (playlistId === 'ilayaraja') {
         selectedPlaylist = tracks.filter(t => t.folder === 'Ilayaraja');
+    } else if (playlistId === '1999melo') {
+        selectedPlaylist = tracks.filter(t => t.folder === '1999melo');
     } else if (playlistId === 'liked') {
         selectedPlaylist = tracks.filter(t => state.likedTrackIds.has(t.id));
     } else {
@@ -587,7 +699,10 @@ function loadAndPlayTrack() {
     if (!track) return;
     
     // Setup Audio Src
+    audio.pause();
+    audio.currentTime = 0;
     audio.src = track.src;
+    audio.load();
     
     // Reset Progress
     progressBarFill.style.width = '0%';
@@ -632,37 +747,58 @@ function loadAndPlayTrack() {
 function playAudio() {
     // Initialize audio context for visualizer on user gesture
     initAudioContext();
-    
-    // Standard audio play returning promise
-    const playPromise = audio.play();
-    
-    if (playPromise !== undefined) {
-        playPromise.then(_ => {
-            state.isPlaying = true;
-            updatePlayPauseUI(true);
-            startVisualizerAnimation();
-        }).catch(error => {
-            console.log("Playback failed. Fallback to localSrc if available. Error:", error);
-            
-            // Try loading local file if provided Cloudinary link failed (CORS or network issues)
-            const track = getCurrentTrack();
-            if (track && track.localSrc && audio.src !== track.localSrc) {
-                console.log("Loading fallback local source:", track.localSrc);
-                audio.src = track.localSrc;
-                audio.play().then(() => {
-                    state.isPlaying = true;
-                    updatePlayPauseUI(true);
-                    startVisualizerAnimation();
-                }).catch(e => {
-                    console.error("Local fallback also failed:", e);
+
+    const track = getCurrentTrack();
+    if (!track) return;
+
+    const tryPlay = () => {
+        const playPromise = audio.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(() => {
+                state.isPlaying = true;
+                updatePlayPauseUI(true);
+                startVisualizerAnimation();
+            }).catch(error => {
+                console.log("Playback failed. Fallback to localSrc if available. Error:", error);
+
+                if (track && track.localSrc && audio.src !== track.localSrc) {
+                    console.log("Loading fallback local source:", track.localSrc);
+                    audio.src = track.localSrc;
+                    audio.load();
+                    audio.play().then(() => {
+                        state.isPlaying = true;
+                        updatePlayPauseUI(true);
+                        startVisualizerAnimation();
+                    }).catch(e => {
+                        console.error("Local fallback also failed:", e);
+                        state.isPlaying = false;
+                        updatePlayPauseUI(false);
+                    });
+                } else {
                     state.isPlaying = false;
                     updatePlayPauseUI(false);
-                });
-            } else {
-                state.isPlaying = false;
-                updatePlayPauseUI(false);
-            }
-        });
+                }
+            });
+        }
+    };
+
+    if (audio.readyState >= 2) {
+        tryPlay();
+    } else {
+        const onReady = () => {
+            audio.removeEventListener('canplay', onReady);
+            audio.removeEventListener('canplaythrough', onReady);
+            tryPlay();
+        };
+
+        audio.addEventListener('canplay', onReady, { once: true });
+        audio.addEventListener('canplaythrough', onReady, { once: true });
+        audio.addEventListener('error', () => {
+            console.error('Audio load error:', audio.error);
+            state.isPlaying = false;
+            updatePlayPauseUI(false);
+        }, { once: true });
     }
 }
 
@@ -1124,6 +1260,13 @@ function renderHomeGrids() {
     tracksIlayaraja.forEach(track => {
         gridIlayaraja.appendChild(createMusicCard(track, 'ilayaraja'));
     });
+
+    // 1999 Melodies Grid
+    const tracks1999melo = tracks.filter(t => t.folder === '1999melo');
+    grid1999melo.innerHTML = '';
+    tracks1999melo.forEach(track => {
+        grid1999melo.appendChild(createMusicCard(track, '1999melo'));
+    });
 }
 
 function createMusicCard(track, playlistId) {
@@ -1218,6 +1361,7 @@ function setupControlListeners() {
             const playlistTracks = tracks.filter(t => {
                 if (state.activePlaylistId === '2025') return t.folder === '2025';
                 if (state.activePlaylistId === 'ilayaraja') return t.folder === 'Ilayaraja';
+                if (state.activePlaylistId === '1999melo') return t.folder === '1999melo';
                 if (state.activePlaylistId === 'liked') return state.likedTrackIds.has(t.id);
                 return false;
             });
@@ -1250,6 +1394,7 @@ function setupNavigationListeners() {
     libraryLikedSongs.addEventListener('click', () => navigateTo('playlist', 'liked'));
     library2025.addEventListener('click', () => navigateTo('playlist', '2025'));
     libraryIlayaraja.addEventListener('click', () => navigateTo('playlist', 'ilayaraja'));
+    library1999melo.addEventListener('click', () => navigateTo('playlist', '1999melo'));
     
     // Mobile Bottom Navigation Links
     mobileNavHome.addEventListener('click', () => navigateTo('home'));
@@ -1268,6 +1413,7 @@ function setupNavigationListeners() {
     // Home view see all/quick play triggers
     document.getElementById('seeAll2025').addEventListener('click', () => navigateTo('playlist', '2025'));
     document.getElementById('seeAllIlayaraja').addEventListener('click', () => navigateTo('playlist', 'ilayaraja'));
+    document.getElementById('seeAll1999melo').addEventListener('click', () => navigateTo('playlist', '1999melo'));
     
     browseCard2025.addEventListener('click', () => navigateTo('playlist', '2025'));
     browseCardIlayaraja.addEventListener('click', () => navigateTo('playlist', 'ilayaraja'));
@@ -1276,10 +1422,12 @@ function setupNavigationListeners() {
     quickCardLiked.addEventListener('click', () => navigateTo('playlist', 'liked'));
     quickCard2025.addEventListener('click', () => navigateTo('playlist', '2025'));
     quickCardIlayaraja.addEventListener('click', () => navigateTo('playlist', 'ilayaraja'));
+    quickCard1999melo.addEventListener('click', () => navigateTo('playlist', '1999melo'));
     
     quickPlayLiked.addEventListener('click', (e) => { e.stopPropagation(); playPlaylistFirstTrack('liked'); });
     quickPlay2025.addEventListener('click', (e) => { e.stopPropagation(); playPlaylistFirstTrack('2025'); });
     quickPlayIlayaraja.addEventListener('click', (e) => { e.stopPropagation(); playPlaylistFirstTrack('ilayaraja'); });
+    quickPlay1999melo.addEventListener('click', (e) => { e.stopPropagation(); playPlaylistFirstTrack('1999melo'); });
     
     // Visualizer overlay toggles
     btnToggleVisualizer.addEventListener('click', () => {
@@ -1302,6 +1450,7 @@ function playPlaylistFirstTrack(playlistId) {
     let playlistTracks = [];
     if (playlistId === '2025') playlistTracks = tracks.filter(t => t.folder === '2025');
     else if (playlistId === 'ilayaraja') playlistTracks = tracks.filter(t => t.folder === 'Ilayaraja');
+    else if (playlistId === '1999melo') playlistTracks = tracks.filter(t => t.folder === '1999melo');
     else if (playlistId === 'liked') playlistTracks = tracks.filter(t => state.likedTrackIds.has(t.id));
     
     if (playlistTracks.length > 0) {

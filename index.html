@@ -63,6 +63,14 @@
                             <span class="playlist-name">Ilayaraja Classics</span>
                             <span class="playlist-meta">Playlist • Vibify</span>
                         </div>
+                    </div>          
+                    <!-- 1999 Melodies Shortcut -->
+                    <div class="playlist-item" id="library1999melo">
+                        <img src="assets/cover_1999_melo.png" alt="1999 Melodies" class="playlist-thumb" onerror="this.src='https://placehold.co/44x44/141418/ffcc00?text=1999melo';">
+                        <div class="playlist-info">
+                            <span class="playlist-name">1999 Melodies</span>
+                            <span class="playlist-meta">Playlist • Vibify</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -125,6 +133,11 @@
                                 <div class="quick-card-content">Ilayaraja Classics</div>
                                 <button class="quick-play-btn" id="quickPlayIlayaraja"><i class="fa-solid fa-play"></i></button>
                             </div>
+                            <div class="quick-card" id="quickCard1999melo">
+                                <img src="assets/1999_melo_cover.png" alt="1999 Melodies" class="quick-card-img" onerror="this.src='https://placehold.co/80x80/141418/ffcc00?text=IR';">
+                                <div class="quick-card-content">1999 Melodies</div>
+                                <button class="quick-play-btn" id="quickPlay1999melo"><i class="fa-solid fa-play"></i></button>
+                            </div>
                         </div>
                     </div>
 
@@ -146,6 +159,17 @@
                             <span style="color: var(--color-secondary); font-size: 13px; font-weight: 600; cursor: pointer;" id="seeAllIlayaraja">See All</span>
                         </div>
                         <div class="section-grid" id="gridIlayaraja">
+                            <!-- Cards will be populated dynamically via JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- 1999 Melodies Section -->
+                    <div class="section-container">
+                        <div class="section-header">
+                            <h2>1999 Melodies</h2>
+                            <span style="color: var(--color-secondary); font-size: 13px; font-weight: 600; cursor: pointer;" id="seeAll1999melo">See All</span>
+                        </div>
+                        <div class="section-grid" id="grid1999melo">
                             <!-- Cards will be populated dynamically via JavaScript -->
                         </div>
                     </div>
